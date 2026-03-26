@@ -1,0 +1,24 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "nooxus-mcp"
+version = "0.1.0"
+description = "Official MCP Server for Nooxus Edge Data (Global Supply Chain & Manufacturing)"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "mcp>=1.0.0",
+    "httpx>=0.27.0"
+]
+
+[project.scripts]
+# 定义了客户可以直接通过 nooxus-mcp 命令唤醒您的服务
+nooxus-mcp = "nooxus_mcp.server:main"
+
+# 🌐 全球名片：PyPI 会将这些链接高亮展示在包的右侧边栏
+[project.urls]
+Homepage = "https://nooxus.com"
+Repository = "https://github.com/Nooxus-AI/nooxus-mcp"
+"Bug Tracker" = "https://github.com/Nooxus-AI/nooxus-mcp/issues"
