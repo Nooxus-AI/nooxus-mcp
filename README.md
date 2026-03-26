@@ -10,6 +10,7 @@ Nooxus empowers AI models (like Claude, Gemini, and Cursor) with **real-time, ve
 
 ---
 
+
 ## ✨ Key Features
 
 - **Zero-Hallucination Supply Chain Data:** Direct access to verified factory capabilities, debunked statuses, and granular micro-manufacturing details.
