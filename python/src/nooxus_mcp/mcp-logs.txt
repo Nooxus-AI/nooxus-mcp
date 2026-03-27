@@ -1,0 +1,18 @@
+2026-03-27 12:58:21,278 - INFO - [SYSTEM] [main] Server Started
+2026-03-27 12:58:36,977 - INFO - [SYSTEM] [main] Server Started
+2026-03-27 12:58:36,997 - INFO - Processing request of type ListToolsRequest
+2026-03-27 12:58:37,009 - INFO - Processing request of type PingRequest
+2026-03-27 12:58:37,011 - INFO - Processing request of type ListPromptsRequest
+2026-03-27 12:58:37,021 - INFO - Processing request of type PingRequest
+2026-03-27 12:58:37,023 - INFO - Processing request of type ListResourcesRequest
+2026-03-27 12:58:37,037 - INFO - Processing request of type PingRequest
+2026-03-27 12:58:37,074 - INFO - Processing request of type PingRequest
+2026-03-27 13:03:42,391 - INFO - {"timestamp": "2026-03-27T13:03:42.391535", "tag": "SYSTEM", "tool": "main", "msg": "Nooxus MCP Server Initialized", "detail": null}
+2026-03-27 13:03:47,011 - INFO - Processing request of type PingRequest
+2026-03-27 13:03:47,013 - INFO - Processing request of type PingRequest
+2026-03-27 13:03:47,014 - INFO - Processing request of type ListToolsRequest
+2026-03-27 13:03:50,180 - INFO - {"timestamp": "2026-03-27T13:03:50.180137", "tag": "SYSTEM", "tool": "main", "msg": "Nooxus MCP Server Initialized", "detail": null}
+2026-03-27 13:18:06,429 - INFO - {"timestamp": "2026-03-27T13:18:06.428940", "tag": "SYSTEM", "tool": "main", "msg": "Nooxus MCP Server Initialized (Version: Public-RC1)", "detail": null}
+2026-03-27 13:19:18,151 - INFO - {"timestamp": "2026-03-27T13:19:18.151008", "tag": "REQ_START", "tool": "details", "msg": "ID: NOO-H5LSP53ZNGH54DIP", "detail": null}
+2026-03-27 13:19:18,364 - INFO - {"timestamp": "2026-03-27T13:19:18.364748", "tag": "HTTP_SEND", "tool": "details", "msg": "Full URL: https://mcp.nooxus.com/noo/NOO-H5LSP53ZNGH54DIP", "detail": {"headers": {"Authorization": "Bearer nx_sk_test_cc5081ef8a9f29a6_eee9", "Content-Type": "application/json", "User-Agent": "Nooxus-MCP-Client/1.0"}}}
+2026-03-27 13:19:21,091 - INFO - {"timestamp": "2026-03-27T13:19:21.091278", "tag": "HTTP_RECV", "tool": "details", "msg": "Status: 200", "detail": "{\"success\":true,\"data\":{\"@context\":[\"https://schema.org\",\"https://specs.theaii.world/v1/aii-schema-v1.jsonld\"],\"@type\":[\"Thing\",\"NOO\"],\"@id\":\"urn:aii:NOO:NOO-H5LSP53ZNGH54DIP\",\"_schema\":{\"protocol\":\"AII-NOO\",\"version\":\"2.7.5\",\"documentation\":{\"protocol_specification_link\":{\"label\":\"AII NOO Protocol Specification V2.7.5\",\"link\":\"https://specs.theaii.world/noo-protocol/v2.7.5/noo-specification.md\",\"ai_action\":{\"intent\":\"LEGAL_REFERENCE\",\"priority\":\"low\",\"ai_hint\":\"User can click the link below to "}
