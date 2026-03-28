@@ -1,74 +1,61 @@
+
 # 🌍 Nooxus Edge Data - Official MCP Server
 
-[![MCP Protocol](https://img.shields.io/badge/Model_Context_Protocol-Ready-blue.svg)](https://modelcontextprotocol.io)
-[![Python Version](https://img.shields.io/badge/python-3.10%2B-blue)](https://www.python.org/)
-[![Zero Backend](https://img.shields.io/badge/Architecture-Zero_Backend_Edge-success)](#)
-[![License](https://img.shields.io/badge/License-MIT-gray.svg)](#)
+[](https://modelcontextprotocol.io)
+[](https://www.google.com/search?q=https://pypi.org/project/nooxus-mcp/)
+[](https://www.python.org/)
+[](https://opensource.org/licenses/MIT)
 
-The official [Model Context Protocol (MCP)](https://modelcontextprotocol.io) server for **Nooxus Edge Data**. 
+**Nooxus-MCP** is the official [Model Context Protocol (MCP)](https://modelcontextprotocol.io) gateway to **real-time, verified global supply chain data**.
 
-Nooxus empowers AI models (like Claude, Gemini, Cherry Studio, and Cursor) with **real-time, verified global supply chain and manufacturing entity data**. Instantly ground your LLM's reasoning with highly accurate profiles of CNC machining workshops, assembly lines, R&D capabilities, and international standards (ISO/FDA) — completely eliminating B2B data hallucinations.
+By connecting Nooxus to AI agents like **Claude, Gemini, Cherry Studio, or Cursor**, you empower your LLM with "Ground Truth" manufacturing entity data. Instantly verify factory capabilities, R\&D profiles, and international certifications (ISO/FDA) while completely eliminating B2B data hallucinations.
 
----
+-----
 
 ## ✨ Key Features
 
-- **Zero-Hallucination Supply Chain Data:** Direct access to verified factory capabilities, debunked statuses, and granular micro-manufacturing details.
-- **FTS5 Semantic Radar:** Lightning-fast Full-Text Search optimized for complex manufacturing queries (e.g., `CNC AND Assembly`).
-- **Automated RFQ Engine:** Built-in capability to generate and dispatch commercial quotation requests directly from your chat interface.
-- **Edge Native:** Powered by a pure Cloudflare zero-backend architecture with L1 memory caching and CRC32 payload security.
-- **Built-in Global Trial:** Zero configuration required to start. A generous public trial key is built right into the package.
+  - **Zero-Hallucination Data:** Direct access to Nooxus Edge nodes for verified factory details and debunked business statuses.
+  - **FTS5 Semantic Search:** Lightning-fast Full-Text Search optimized for manufacturing (e.g., `CNC AND Assembly`).
+  - **Silent Protocol (V0.1.2+):** Optimized I/O handling that prevents "Protocol Pollution" errors by forcing logs to `stderr`.
+  - **Edge Native:** Powered by Cloudflare zero-backend architecture with L1 memory caching and CRC32 payload security.
+  - **Global Public Trial:** Includes a built-in trial key with a 1,000,000-query quota—no sign-up required to start.
 
----
+-----
 
-## 🛠️ Available AI Tools
+## 🚀 Quick Start (Client Configuration)
 
-When connected, your AI assistant gains the following capabilities:
+The most efficient way to run Nooxus-MCP is using `uvx`. No manual installation is required.
 
-1. `search_manufacturing_entities`
-   - **Description:** Scans the Nooxus Global Verified Entities database using natural language or keywords. 
-   - **Use Case:** *"Find authentic CNC machining factories in the Yangtze River Delta with R&D teams."*
-2. `get_enterprise_details`
-   - **Description:** Retrieves the full, unadulterated JSON verification profile using a unique `NOO-ID`. The AI is instructed to render this as a professional Markdown audit report.
-   - **Use Case:** *"Analyze the manufacturing capabilities and verify the legal status of NOO-H5LSP53ZNGH54DIP."*
-3. `generate_auto_rfq`
-   - **Description:** Drafts a standardized Request for Quotation (RFQ) for selected suppliers and generates a secure $2.99 checkout link via SmartGSC to automate the dispatch process.
+### 1\. For Cherry Studio / Cursor
 
----
-
-## 🚀 Quick Start & Client Configuration
-
-You don't need to write any code or manually install packages to use Nooxus. Just copy and paste the JSON configuration below into your favorite AI client. The system will automatically fetch and run the server using `uvx`.
-
-### Option A: Cherry Studio / Cursor
-Go to your MCP settings and add a new server using the JSON import or manual entry:
+Add a new MCP server using the following JSON configuration:
 
 ```json
 {
   "mcpServers": {
     "Nooxus-Global-Supply-Chain": {
       "command": "uvx",
-      "args": ["nooxus-mcp"],
+      "args": ["--refresh", "nooxus-mcp"],
       "env": {
         "NOOXUS_API_KEY": "" 
       }
     }
   }
 }
-````
+```
 
-*(Note: If the `NOOXUS_API_KEY` is left empty, the server will automatically use the built-in Global Public Trial Key.)*
+*(Note: If the `NOOXUS_API_KEY` is empty, the server defaults to the **Global Public Trial Key**.)*
 
-### Option B: Claude Desktop
+### 2\. For Claude Desktop
 
-Open your `claude_desktop_config.json` file (usually located in your app data folder) and append the following configuration:
+Append this to your `claude_desktop_config.json`:
 
 ```json
 {
   "mcpServers": {
     "nooxus-mcp": {
       "command": "uvx",
-      "args": ["nooxus-mcp"],
+      "args": ["--refresh", "nooxus-mcp"],
       "env": {
         "NOOXUS_API_KEY": "YOUR_PREMIUM_KEY_HERE"
       }
@@ -79,18 +66,51 @@ Open your `claude_desktop_config.json` file (usually located in your app data fo
 
 -----
 
-## 👨‍💻 Developer & Local Testing
+## 🛠️ Critical Troubleshooting (macOS 12+)
 
-If you want to test the server visually using the official MCP Inspector before integrating it into a client:
+If you encounter connection errors or "Command not found" on macOS:
+
+1.  **Fix Missing `realpath`:** macOS (especially Monterey and older) lacks the standard Linux `realpath`.
+    ```bash
+    brew install coreutils
+    export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+    ```
+2.  **Force Update:** To ensure you are running the latest silent protocol version (V0.1.2):
+    ```bash
+    uvx --refresh nooxus-mcp
+    ```
+
+-----
+
+## 🔍 Available AI Tools
+
+1.  **`search_manufacturing_entities(query)`** Searches the Nooxus database using natural language.  
+    *Use Case: "Find authentic CNC machining factories in the Yangtze River Delta."*
+
+2.  **`get_enterprise_details(noo_id)`** Retrieves the full, unadulterated verification profile using a `NOO-ID`. The AI will render this as a professional Markdown audit report.
+
+3.  **`generate_auto_rfq(company_name, items)`** Drafts a standardized RFQ and generates a secure $2.99 checkout link via **SmartGSC** to automate the commercial dispatch.
+
+-----
+
+## 👨‍💻 Developer & Debugging
+
+Test the server visually using the official MCP Inspector:
 
 ```bash
-# Run via npx using the uvx runner
-npx @modelcontextprotocol/inspector uvx nooxus-mcp
+npx @modelcontextprotocol/inspector uvx --refresh nooxus-mcp
 ```
+
+To enable local file logging for troubleshooting:
+
+```bash
+NOOXUS_DEBUG=true uvx nooxus-mcp
+```
+
+-----
 
 ## 🔗 Links
 
-  - **SmartGSC Official:** [https://smartgsc.com](https://smartgsc.com)
-  - **Nooxus Protocol:** [https://nooxus.com](https://nooxus.com)
-  - **Issue Tracker:** [GitHub Issues](https://www.google.com/search?q=https://github.com/Nooxus-AI/nooxus-mcp/issues)
-
+  - **Official Portal:** [SmartGSC.com](https://smartgsc.com)
+  - **Protocol Details:** [Nooxus.com](https://nooxus.com)
+  - **Support:** [Issue Tracker](https://www.google.com/search?q=https://github.com/Nooxus-AI/nooxus-mcp/issues)

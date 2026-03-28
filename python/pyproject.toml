@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "nooxus-mcp"
-version = "0.1.0"
+version = "0.1.2"
 description = "Official MCP Server for Nooxus Edge Data (Global Supply Chain & Manufacturing)"
 readme = "README.md"
 requires-python = ">=3.10"
