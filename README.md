@@ -106,3 +106,4 @@ NOOXUS_DEBUG=true uvx nooxus-mcp
 ## 📄 License
 
 This project is licensed under the [MIT License](https://www.google.com/search?q=LICENSE).
+< mcp-name: io.github.Nooxus-AI/nooxus-mcp -->
