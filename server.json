@@ -1,46 +1,20 @@
 {
-  "name": "nooxus-mcp",
-  "description": "MCP server for supply chain entity search - find Chinese manufacturers by production capability",
-  "version": "0.1.3",
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.robertglools/nooxus-mcp",
+  "description": "Nooxus Edge Data MCP: Search AI-verified Chinese manufacturers, eliminate B2B hallucinations.",
   "repository": {
-    "type": "git",
-    "url": "https://github.com/Nooxus-AI/nooxus-mcp"
+    "url": "https://github.com/Nooxus-AI/nooxus-mcp",
+    "source": "github"
   },
-  "license": "MIT",
-  "author": "GloolsGuan <gloolsguan@gmail.com>",
-  "categories": ["Business", "Data", "Search"],
-  "tools": [
+  "version": "0.1.4",
+  "packages": [
     {
-      "name": "search_manufacturing_entities",
-      "description": "Search for manufacturing entities (NOO - Nous Nodes) with specific production capabilities. Returns structured company data optimized for LLM consumption.",
-      "inputSchema": {
-        "type": "object",
-        "properties": {
-          "capability": {
-            "type": "string",
-            "description": "Production capability to search for (e.g., 'precision casting', 'CNC machining')"
-          },
-          "location": {
-            "type": "string",
-            "description": "Optional location filter (e.g., 'Shenzhen', 'Guangdong')"
-          },
-          "limit": {
-            "type": "integer",
-            "description": "Maximum number of results to return",
-            "default": 10
-          }
-        },
-        "required": ["capability"]
+      "registryType": "pypi",
+      "identifier": "nooxus-mcp",
+      "version": "0.1.4",
+      "transport": {
+        "type": "stdio"
       }
     }
-  ],
-  "transport": {
-    "type": "stdio",
-    "command": "python",
-    "args": ["-m", "nooxus_mcp"]
-  },
-  "pyPI": {
-    "package": "nooxus-mcp",
-    "version": "0.1.3"
-  }
+  ]
 }

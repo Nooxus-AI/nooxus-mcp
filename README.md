@@ -1,109 +1,125 @@
-
-# 🌍 Nooxus Edge Data - Official MCP Server
+# 🛡️ Nooxus-AI: Sourcing Edge for Claude Desktop (MCP)
 
 [](https://modelcontextprotocol.io)
-[](https://www.python.org/)
-[](https://www.google.com/search?q=https://pypi.org/project/nooxus-mcp/)
-[](https://www.google.com/search?q=%23)
+[](https://pypi.org/project/nooxus-mcp/)
+[](https://opensource.org/licenses/MIT)
 
-**Nooxus-MCP** is the official bridge connecting AI models (such as Claude, Gemini, Cursor, and Cherry Studio) to **real-time, verified global supply chain data**. Built on the [Model Context Protocol (MCP)](https://modelcontextprotocol.io), it completely eliminates B2B trade hallucinations by providing LLMs with granular factory capability profiles, manufacturing process details, and ISO/FDA certification statuses.
+**Nooxus-MCP** is the official [Model Context Protocol (MCP)](https://modelcontextprotocol.io) gateway connecting AI models (Claude, Gemini, Cursor, Cherry Studio) to **real-time, verified global supply chain data**. 
 
------
+By installing this, you instantly upgrade your AI from a conversational chatbot into a **Forensic Sourcing Analyst**. It cross-references the AII-NOO verified database to expose shell companies, verify real manufacturers, and completely eliminate B2B trade hallucinations.
 
-## ✨ Key Features
+---
 
-  - **Zero-Hallucination Supply Chain Data:** Direct access to Nooxus Edge nodes for authentic factory capabilities, debunked business statuses, and micro-manufacturing details.
-  - **FTS5 Semantic Radar:** Lightning-fast Full-Text Search optimized for complex manufacturing queries (e.g., `CNC AND Assembly`).
-  - **Edge Native Architecture:** A pure Cloudflare Zero-Backend architecture featuring L1 memory caching and CRC32 payload security.
-  - **Plug & Play:** Includes a built-in Global Public Trial Key with a 1,000,000-query quota — no configuration required to start.
+## ✨ The "Aha Moment" (Key Features)
 
------
+- **Zero-Hallucination Sourcing:** Direct access to Nooxus Edge nodes. If a factory is a fake trading proxy, the AI will know.
+- **Forensic UI Rendering:** Forces the LLM to generate professional UI dashboards (Trust Scores, Red Flags, Capacity) instead of boring text.
+- **Edge Native Architecture:** Pure Cloudflare Zero-Backend architecture featuring L1 memory caching and CRC32 payload security.
+- **Out-of-the-Box Trial:** Includes a built-in global public trial key (1,000,000-query quota). **No sign-up required to start!**
+
+---
 
 ## 🚀 Quick Start (Zero Config)
 
-The recommended way to run the server is via `uvx`. If no `NOOXUS_API_KEY` is provided, the system automatically falls back to the **Global Public Trial Key**.
+You DO NOT need an API key to start. The system will automatically use the built-in trial token. We use `uvx` for a lightning-fast, zero-install experience.
 
-### 1\. Command Line Testing (MCP Inspector)
-
-Use the official inspector to visualize and test tools in your browser:
-
-```bash
-npx @modelcontextprotocol/inspector uvx --refresh nooxus-mcp
-```
-
-### 2\. Client Integration (Cherry Studio / Cursor / Claude)
-
-Add the following JSON to your MCP server configuration:
+### For Claude Desktop (Recommended)
+Add the following to your `claude_desktop_config.json`:
 
 ```json
 {
   "mcpServers": {
-    "Nooxus-Global": {
+    "nooxus-edge": {
       "command": "uvx",
-      "args": ["--refresh", "nooxus-mcp"],
+      "args": ["nooxus-mcp@latest"]
+    }
+  }
+}
+```
+*(Restart Claude Desktop. You will see the 🔨 hammer icon indicating Nooxus tools are loaded.)*
+
+---
+
+## 🔄 How to Force Upgrade
+
+Because the `uv` package manager uses aggressive local caching for speed, you might not get the newest update immediately even with the `@latest` tag. To force an upgrade to the newest version, open your terminal and run:
+
+```bash
+uvx --refresh nooxus-mcp@latest --version
+```
+
+---
+
+## 🎯 The Playbook (How to trigger the Sourcing Agent)
+
+To guarantee the AI uses the verified database and renders the professional UI, always start your prompts with our cheat code: **`Use Nooxus | `**
+
+**1. Market Scanning & Discovery**
+> *"Use Nooxus | I am looking for verified suppliers of 'terminal testing equipment' in Nanjing. Please search your network."*
+
+**2. The Deep-Dive Forensic Audit (Killer Feature 🔥)**
+> *"Use Nooxus | Give me a deep-dive forensic audit on this node: NOO-PFJ77WGLNYHRXDZE. Show me the red flags and trust scores."*
+
+---
+
+## 🔑 Advanced: Upgrading Your Quota
+
+Once you exhaust the generous daily limits of the global trial key, you can seamlessly plug in your own developer API key for unlimited deep-dive audits.
+
+1. Register for free at [SmartGSC.com](https://smartgsc.com) or [Nooxus.com](https://nooxus.com).
+2. Generate your `NOOXUS_API_KEY`.
+3. Update your MCP config by adding the `env` block:
+
+```json
+{
+  "mcpServers": {
+    "nooxus-edge": {
+      "command": "uvx",
+      "args": ["nooxus-mcp@latest"],
       "env": {
-        "NOOXUS_API_KEY": "" 
+        "NOOXUS_API_KEY": "your_personal_key_here"
       }
     }
   }
 }
 ```
 
------
+---
 
-## 🛠️ Troubleshooting & Environment Optimization
+## 🔍 Available AI Tools (Under the hood)
 
-Based on real-world deployment experience on macOS and multi-language environments, here are the solutions to common issues:
+1. **`semantic_search_nooxus(query)`**: Lightning-fast semantic search optimized for manufacturing entities. Returns potential partners and their NOO-IDs.
+2. **`get_nooxus_node(noo_id)`**: Retrieves the full verification profile. Triggers Strategy D to force the AI to act as a Risk Analyst and render a visual warning dashboard.
 
-### 1\. macOS Path Conflicts & Missing `realpath`
+---
 
-**Issue:** `realpath: command not found` or `ENOENT` error.
-**Cause:** macOS (e.g., Monterey) does not include the standard Linux `realpath` utility by default.
-**Solution:**
+## 👨‍💻 Developer & Troubleshooting
 
+### 1. Command Line Testing (MCP Inspector)
+Use the official inspector to visualize and test tools in your browser without Claude:
 ```bash
-brew install coreutils
-# Inject into PATH (Recommended to add this to your ~/.zshrc)
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+npx @modelcontextprotocol/inspector uvx --refresh nooxus-mcp
 ```
 
-### 2\. Protocol Pollution & Connection Timeouts
-
-**Issue:** Client shows `Internal Server Error (500)` or `Invalid JSON: EOF`.
-**Cause:** Non-JSON logs were printed to `stdout`, interfering with the MCP data channel.
-**Solution:** Nooxus-MCP V0.1.2+ forces all logs to `stderr`. Ensure you are using the latest version:
-
-```bash
-uvx --refresh nooxus-mcp
-```
-
-### 3\. Local Debug Mode
-
-To generate a local log file `mcp-logs.txt` for deep troubleshooting, enable the Debug switch:
-
+### 2. Local Debug Mode
+To generate a local log file `mcp-logs.txt` for deep troubleshooting:
 ```bash
 NOOXUS_DEBUG=true uvx nooxus-mcp
 ```
 
------
+### 3. macOS Path Conflicts (`realpath` missing)
+If you encounter `realpath: command not found` on older macOS versions:
+```bash
+brew install coreutils
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+```
 
-## 🔧 Available Tools
-
-1.  **`search_manufacturing_entities(query)`** Scan the Nooxus Global Verified Entities database using natural language or keywords.  
-    *Example: "Find authentic CNC machining factories in the Yangtze River Delta."*
-
-2.  **`get_enterprise_details(noo_id)`** Retrieve the full JSON verification profile using a unique `NOO-ID`. The AI is instructed to render this as a professional Markdown audit report.
-
-3.  **`generate_auto_rfq(company_name, items)`** Draft a standardized Request for Quotation (RFQ) for selected suppliers and generate a secure payment link via SmartGSC.
-
------
+---
 
 ## 📈 Release History
+- **V0.1.6**: Documentation overhaul, introduced "Cheat Code" prompting strategies, explicit upgrade commands, and API Quota instructions.
+- **V0.1.5**: Updated semantic search and node retrieval logic for higher UI conversion.
+- **V0.1.2**: Fixed protocol pollution, enforced stderr logging.
 
-  - **V0.1.2 (Latest)**: Fixed protocol pollution, enforced stderr logging, and enhanced macOS compatibility.
-  - **V0.1.0**: Initial Global Release.
-
-## 📄 License
-
-This project is licensed under the [MIT License](https://www.google.com/search?q=LICENSE).
-< mcp-name: io.github.Nooxus-AI/nooxus-mcp -->
+---
+**Official Portal:** [SmartGSC.com](https://smartgsc.com) | **Protocol Details:** [Nooxus.com](https://nooxus.com)
